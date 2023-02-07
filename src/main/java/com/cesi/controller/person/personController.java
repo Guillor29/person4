@@ -1,7 +1,8 @@
 package com.cesi.controller.person;
 
 import com.cesi.controller.person.model.person;
-import com.cesi.services.personService;
+import com.cesi.services.person.personService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
