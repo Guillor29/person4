@@ -8,4 +8,5 @@ public interface RencontreDAO {
     RencontreDTO getRencontre(Integer id);
     RencontreDTO updateRencontre(Rencontre rencontre);
     RencontreDTO deleteRencontre(Integer id);
+    RencontreDTO[] getRencontres();
 }

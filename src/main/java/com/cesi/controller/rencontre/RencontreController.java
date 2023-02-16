@@ -10,20 +10,26 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Validated
-public class rencontreController {
+public class RencontreController {
 
     public static final String NOT_FOUND_MESSAGE = "Rien";
 
     public final RencontreService rencontreService;
 
     @Autowired
-    public rencontreController(RencontreService rencontreService ){
+    public RencontreController(RencontreService rencontreService ){
         this.rencontreService = rencontreService;
     }
 
     @PostMapping("/rencontre")
     public Rencontre tartentpion(@RequestBody Rencontre rencontre){
         RencontreDTO blabla = rencontreService.addRencontre(rencontre);
+        return null;
+    }
+
+    @GetMapping("/rencontres")
+    public Rencontre getRencontres(){
+        RencontreDTO[] get = rencontreService.getRencontres();
         return null;
     }
 

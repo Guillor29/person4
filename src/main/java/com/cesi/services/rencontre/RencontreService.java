@@ -21,5 +21,7 @@ public class RencontreService {
     }
     public RencontreDTO getRencontre(Integer id){ return rencontreDAO.getRencontre(id); }
     public RencontreDTO updateRencontre(Rencontre rencontre) { return rencontreDAO.updateRencontre(rencontre); }
-    public RencontreDTO deleteRencontre(Integer id) { return rencontreDAO.deleteRencontre(id);}
+    public RencontreDTO deleteRencontre(Integer id) { return rencontreDAO.deleteRencontre(id); }
+
+    public RencontreDTO[] getRencontres() { return rencontreDAO.getRencontres(); }
 }

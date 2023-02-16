@@ -1,7 +1,7 @@
 package com.cesi.controller.person;
 
-import com.cesi.controller.person.model.person;
-import com.cesi.services.person.personService;
+import com.cesi.controller.person.model.Person;
+import com.cesi.services.person.PersonService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,26 +14,26 @@ import java.util.List;
 
 @RestController
 @Validated
-public class personController {
+public class PersonController {
 
     public static final String NOT_FOUND_MESSAGE = "Person not found";
 
-    private static final Logger LOG = LoggerFactory.getLogger(personController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
 
 //    private static final PersonMapper MAPPER = PersonMapper.INSTANCE;
 
-    private final personService personService;
+    private final PersonService personService;
 
     @Autowired
-    public personController(personService personService) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
     @GetMapping("/persons")
-    public List<person> listPersons(@RequestParam(value = "id", required = false) String id,
+    public List<Person> listPersons(@RequestParam(value = "id", required = false) String id,
                                     @RequestParam(value = "nom", required = false) String nom) {
 
-        List<person> res = new ArrayList<person>();
+        List<Person> res = new ArrayList<Person>();
 
         try {
             if (id == null &&  nom == null) {
@@ -43,7 +43,7 @@ public class personController {
             }
 
         } catch (final Exception e) {
-            LOG.error("Pb du service /person: ", e);
+            LOG.error("Pb du service /Person: ", e);
         }
 
         return res;
@@ -51,16 +51,16 @@ public class personController {
     }
 
     @PostMapping("/persons")
-    public person addPerson(@RequestBody person person) {
+    public Person addPerson(@RequestBody Person person) {
 
-        person resp = null;
+        Person resp = null;
 
 
         try {
             resp = this.personService.addPerson(person);
 
         } catch (final Exception e) {
-            LOG.error("Pb du service /person: ", e);
+            LOG.error("Pb du service /Person: ", e);
         }
 
         return resp;
@@ -76,7 +76,7 @@ public class personController {
             resp = this.personService.deleteById(id);
 
         } catch (final Exception e) {
-            LOG.error("Pb du service /person: ", e);
+            LOG.error("Pb du service /Person: ", e);
         }
 
         return resp;
@@ -84,14 +84,14 @@ public class personController {
     }
 
     @PutMapping("persons/{id}")
-    public person updatePersonRest(@RequestBody person person, @PathVariable Integer id) {
+    public Person updatePersonRest(@RequestBody Person person, @PathVariable Integer id) {
 
-        person resp = null;
+        Person resp = null;
 
         try {
             resp = this.personService.update(person,id);
         } catch (final Exception e) {
-            LOG.error("Pb du service /person: ", e);
+            LOG.error("Pb du service /Person: ", e);
         }
 
         return resp;

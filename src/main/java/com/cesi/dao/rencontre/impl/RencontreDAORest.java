@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Repository
 public class RencontreDAORest implements RencontreDAO {
@@ -29,7 +30,7 @@ public class RencontreDAORest implements RencontreDAO {
         String url = "https://8080-romainvisbec-springcesi-pww6n510xt2.ws-eu85.gitpod.io/rencontres";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<Rencontre> entity = new HttpEntity<Rencontre>(rencontre, headers);
         response = restTemplate.exchange(url, HttpMethod.POST, entity, RencontreDTO.class);
@@ -44,9 +45,24 @@ public class RencontreDAORest implements RencontreDAO {
         String url = "https://8080-romainvisbec-springcesi-pww6n510xt2.ws-eu85.gitpod.io/rencontres" + 1;
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<Rencontre> entity = new HttpEntity<Rencontre>(rencontre, headers);
         response = restTemplate.exchange(url, HttpMethod.PUT, entity, RencontreDTO.class);
+
+        return response.getBody();
+    }
+
+    public RencontreDTO[] getRencontres() {
+        ResponseEntity<RencontreDTO[]> response;
+
+        String url = "https://8080-romainvisbec-springcesi-pww6n510xt2.ws-eu85.gitpod.io/rencontres";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+//        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        HttpEntity<RencontreDTO[]> entity = new HttpEntity<RencontreDTO[]>(headers);
+        response = restTemplate.exchange(url, HttpMethod.GET, entity, RencontreDTO[].class);
 
         return response.getBody();
     }
@@ -58,7 +74,7 @@ public class RencontreDAORest implements RencontreDAO {
         String url = "https://8080-romainvisbec-springcesi-pww6n510xt2.ws-eu85.gitpod.io/rencontres/" + id;
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         response = restTemplate.exchange(url, HttpMethod.GET, entity, RencontreDTO.class);
@@ -73,7 +89,7 @@ public class RencontreDAORest implements RencontreDAO {
         String url = "https://8080-romainvisbec-springcesi-pww6n510xt2.ws-eu85.gitpod.io/rencontres" + id;
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<Rencontre> entity = new HttpEntity<Rencontre>(headers);
         response = restTemplate.exchange(url, HttpMethod.DELETE, entity, RencontreDTO.class);
