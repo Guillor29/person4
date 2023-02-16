@@ -78,4 +78,7 @@ public class Nouvelleperson {
     public void setNationalite(String nationalite) {
         this.nationalite = nationalite;
     }
+
+    public void setVictoryOrDefeat(int victoryOrDefeat) {
+    }
 }
